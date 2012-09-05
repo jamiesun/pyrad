@@ -449,10 +449,10 @@ class AuthPacket(Packet):
 
         return result
 
-    def ChapEcrypt(self,password):
-        if not self.authenticator:
+    def chapPasswd(self,password):
+        if self.authenticator is None:
             self.authenticator = self.CreateAuthenticator()
-        if not self.id:
+        if self.id is None:
             self.id = self.CreateID()
 
         if isinstance(password, six.text_type):
